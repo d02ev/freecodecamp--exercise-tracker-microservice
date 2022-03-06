@@ -14,7 +14,6 @@ Route.post('/', async (req, res) => {
 
     try {
         user_entry_save = await user_entry.save();
-
         res.json({ _id: user_entry_save._id, username: user_entry_save.username });
     }
     catch (err) {
@@ -39,14 +38,6 @@ Route.post('/:_id/exercises', async (req, res) => {
 
     try {
         exercise_entry_save = await exercise_entry.save();
-
-        let log_entry = new LogModel({
-            _id: req.params._id,
-            username: u_name,
-
-
-        });
-
         res.json(exercise_entry_save);
     }
     catch (err) {
@@ -59,7 +50,6 @@ Route.post('/:_id/exercises', async (req, res) => {
 Route.get('/', async (req, res) => {
     try {
         const get_all_users = await UserModel.find();
-
         res.json(get_all_users);
     }
     catch (err) {
